@@ -6,3 +6,26 @@
 # y = 4 -> 1
 # x = -34
 # y = -30 -> 3
+
+x = input('Введите координаты по X: ')
+y = input('Введите координаты по Y: ')
+
+try:    
+    x = int(x)
+    y = int(y)
+except ValueError:
+    print('Вводить можно только числа, по-пробуйте еще раз.')
+    exit()
+
+if x == 0 or y == 0:
+    print('Обе координаты должны быть отличны от 0.')
+    exit()
+
+if x > 0 and y > 0:
+    print(f'x = {x} \ny = {y} -> 1')
+elif x < 0 and y > 0:
+    print(f'x = {x} \ny = {y} -> 2')
+elif x < 0 and y < 0:
+    print(f'x = {x} \ny = {y} -> 3')  
+elif x > 0 and y < 0:
+    print(f'x = {x} \ny = {y} -> 4')  

@@ -3,3 +3,37 @@
 # Если перевернутое число не равно исходному, то они складываются и проверяются на палиндром еще раз.
 # Это происходит до тех пор, пока не будет найден палиндром.
 # Напишите такую программу, которая найдет палиндром введенного пользователем числа.
+
+def leave_only_numbers(st):
+    rezult = ''
+
+    for i in st:
+        if ord(i) > ord('/') and ord(i) < ord(':'):
+            rezult += i
+
+    return rezult
+
+
+x = ''
+
+while x == '' or x == 'ошибка':
+    input_x = input('Введите число: ')
+
+    if input_x.lower() == 'стоп':
+        exit()
+
+    x = leave_only_numbers(input_x)
+
+    if len(x) == 0:
+        print('Вы ввели не число, по-пробуйте еще раз или напишите "стоп" для отмены')
+        x = 'ошибка'
+    else:
+        x = int(x)
+
+reverse_x = str(x)[::-1]
+
+while str(x) != reverse_x:
+    x += int(reverse_x)
+    reverse_x = str(x)[::-1]
+
+print(f'{input_x} -> {x}')

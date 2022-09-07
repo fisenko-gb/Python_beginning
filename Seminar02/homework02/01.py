@@ -42,4 +42,7 @@ while x == '' or x == 'ошибка':
 
 rezult = sum_numbers(x)
 
+if input_x[0] == "-":
+    rezult *= -1
+
 print(f'{input_x} -> {rezult}')

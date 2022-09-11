@@ -5,7 +5,6 @@
 # [2, 3, 4, 5, 6] = > [12, 15, 16]
 # [2, 3, 5, 6] = > [12, 15]
 from random import randint
-from tkinter.tix import TList
 
 
 def return_random_list(min: int, max: int, list_len: int) -> list:
@@ -22,10 +21,7 @@ def multiplication_pairs(t_list: list) -> list:
     i = 0
     rezult = []
     while i < len(t_list) / 2:
-        try:
-            rezult.append(t_list[i] * t_list[len(t_list) - (i + 1)])
-        except IndexError:
-            rezult.append(t_list[i] * t_list[i])
+        rezult.append(t_list[i] * t_list[len(t_list) - (i + 1)])
         i += 1
     return rezult
 

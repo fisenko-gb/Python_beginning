@@ -6,12 +6,13 @@
 # 3 -> 11
 # 2 -> 10
 
-def binary_from_decimal(number: int, t_srt: str = '') -> str:
+def binary_from_decimal(number: int, osn: int = 2, t_srt: str = '') -> str:
     '''
     Функция переводит десятичное число в двоичное представление рекурсией
     '''
     if number != 0:
-        t_srt += binary_from_decimal(number // 2, t_srt) + str(number % 2)
+        t_srt += binary_from_decimal(number // osn,
+                                     osn, t_srt) + str(number % osn)
     return t_srt
 
 

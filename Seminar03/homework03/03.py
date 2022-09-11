@@ -27,7 +27,7 @@ def return_raz(t_list: list) -> dict:
     '''
     min = t_list[0] - int(t_list[0])
     max = t_list[0] - int(t_list[0])
-    for i in t_list:
+    for i in t_list[1:]:
         tek = i - int(i)
         if tek > max:
             max = tek

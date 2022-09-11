@@ -6,15 +6,15 @@
 # 3 -> 11
 # 2 -> 10
 
-def dec_bin(number: int, t_srt: str = '') -> str:
+def binary_from_decimal(number: int, t_srt: str = '') -> str:
     '''
     Функция переводит десятичное число в двоичное представление рекурсией
     '''
     if number != 0:
-        t_srt += dec_bin(number // 2, t_srt) + str(number % 2)
+        t_srt += binary_from_decimal(number // 2, t_srt) + str(number % 2)
     return t_srt
 
 
 num = int(input('Введите десятичное число: '))
 
-print(dec_bin(num))
+print(binary_from_decimal(num))

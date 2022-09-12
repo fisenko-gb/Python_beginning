@@ -7,7 +7,6 @@ def random_list(min: int, max: int, list_len: int) -> list:
     """
     return [randint(min, max) for i in range(list_len)]
 
-
 def leave_only_numbers(st: str) -> str:
     """
     Фкнкция принимает строку и возвращает строку только из цифр переданной строки
@@ -23,7 +22,6 @@ def leave_only_numbers(st: str) -> str:
 
     return rezult
 
-
 def leave_only_char(st: str) -> str:
     """
     Фкнкция принимает строку и возвращает строку БЕЗ цифр переданной строки
@@ -35,7 +33,6 @@ def leave_only_char(st: str) -> str:
             rezult += i
 
     return rezult
-
 
 def random_my(min_number: int, max_number: int) -> int:
     """
@@ -54,13 +51,11 @@ def random_my(min_number: int, max_number: int) -> int:
     rnd = min_number + smech
     return rnd
 
-
 def list_revers(x: list) -> list:
     """
     Фкнкция принимает список и возращает его в перевернутом виде
     """
     return x[::-1]
-
 
 def input_testing_number(t_str: str = 'Введите число: '):
     """
@@ -78,3 +73,12 @@ def input_testing_number(t_str: str = 'Введите число: '):
             break
 
     return x
+
+def convert(number: int, osn: int = 2, t_srt: str = '') -> str:
+    """
+    Функция переводит десятичное число в систему исчесления переданой вторым параметром рекурсией
+    """
+    if number != 0:
+        t_srt += convert(number // osn,
+                         osn, t_srt) + str(number % osn)
+    return t_srt

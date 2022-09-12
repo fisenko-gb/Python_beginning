@@ -1,17 +1,17 @@
 from random import randint
-
+import time
 
 def random_list(min: int, max: int, list_len: int) -> list:
-    '''
+    """
     Фкнкция принимает на вход три параметра и возвращает список случайных числе
-    '''
+    """
     return [randint(min, max) for i in range(list_len)]
 
 
 def leave_only_numbers(st: str) -> str:
-    '''
+    """
     Фкнкция принимает строку и возвращает строку только из цифр переданной строки
-    '''
+    """
     rezult = ''
 
     for i in st:
@@ -25,9 +25,9 @@ def leave_only_numbers(st: str) -> str:
 
 
 def leave_only_char(st: str) -> str:
-    '''
+    """
     Фкнкция принимает строку и возвращает строку БЕЗ цифр переданной строки
-    '''
+    """
     rezult = ''
 
     for i in st:
@@ -38,9 +38,9 @@ def leave_only_char(st: str) -> str:
 
 
 def random_my(min_number: int, max_number: int) -> int:
-    '''
+    """
     Фкнкция принимает диапазон. в котором необходимо сгенирировать случайное число, на основании time, и возращает случайное число
-    '''
+    """
 
     t_data = '%.9f' % time.time()
     time.sleep(0.00001)
@@ -56,23 +56,23 @@ def random_my(min_number: int, max_number: int) -> int:
 
 
 def list_revers(x: list) -> list:
-    '''
+    """
     Фкнкция принимает список и возращает его в перевернутом виде
-    '''
+    """
     return x[::-1]
 
 
 def input_testing_number(t_str: str = 'Введите число: '):
-    '''
+    """
     Функция возращает число, если оно корректно, введенное пользователем
-    '''
+    """
 
     while type:
         input_x = input(t_str)
         try:
             x = int(input_x)
         except ValueError:
-            print('"' + input_x + '"' + ' - не является числом')
+            print('"' + input_x + '"' + ' - данные введены не корректно...')
             continue
         else:
             break

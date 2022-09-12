@@ -1,16 +1,17 @@
 
-import fan_function as fan
+def getNumber01():  # Первый вариант
+    while type:
+        getNumber = input('Введите число: ')                 # Ввод числа
+        try:                                    # Проверка что getTempNumber преобразуется в число без ошибки
+            getTempNumber = int(getNumber)
+        # Проверка на ошибку неверного формата (введены буквы)
+        except ValueError:
+            print('"' + getNumber + '"' + ' - не является числом')
+            continue
+        else:                                   # Если getTempNumber преобразован в число без ошибки, выход из цикла while
+            break
+    # возвращает модуль getTempNumber (для искл. отрицат. чисел)
+    return getTempNumber
 
-# import time
-# i = 100
-# while i > 0:
-#     print('%.9f' % time.time())
-#     # print(time.monotonic_ns())
-#     i -= 1
-#     time.sleep(0.00001)
 
-i = 0
-while i < 10:
-    random_list = fan.random_list(1, 10, 10)
-    print(random_list)
-    i += 1
+print(getNumber01())

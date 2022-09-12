@@ -60,3 +60,21 @@ def list_revers(x: list) -> list:
     Фкнкция принимает список и возращает его в перевернутом виде
     '''
     return x[::-1]
+
+
+def input_testing_number(t_str: str = 'Введите число: '):
+    '''
+    Функция возращает число, если оно корректно, введенное пользователем
+    '''
+
+    while type:
+        input_x = input(t_str)
+        try:
+            x = int(input_x)
+        except ValueError:
+            print('"' + input_x + '"' + ' - не является числом')
+            continue
+        else:
+            break
+
+    return x

@@ -6,16 +6,37 @@
 # 3 -> 11
 # 2 -> 10
 
-def binary_from_decimal(number: int, osn: int = 2, t_srt: str = '') -> str:
+from asyncio.windows_events import NULL
+
+
+def convert(number: int, osn: int = 2, t_srt: str = '') -> str:
     '''
-    Функция переводит десятичное число в двоичное представление рекурсией
+    Функция переводит десятичное число в систему исчесления переданой вторым параметром рекурсией
     '''
     if number != 0:
-        t_srt += binary_from_decimal(number // osn,
-                                     osn, t_srt) + str(number % osn)
+        t_srt += convert(number // osn,
+                         osn, t_srt) + str(number % osn)
     return t_srt
 
 
-num = int(input('Введите десятичное число: '))
+def input_testing_number(t_str: str = 'Введите число: '):
+    '''
+    Функция возращает число, если оно корректно, введенное пользователем
+    '''
 
-print(binary_from_decimal(num))
+    while type:
+        input_x = input(t_str)
+        try:
+            x = int(input_x)
+        except ValueError:
+            print('"' + input_x + '"' + ' - не является числом')
+            continue
+        else:
+            break
+
+    return x
+
+
+num = input_testing_number()
+
+print(convert(num))

@@ -6,9 +6,6 @@
 # 3 -> 11
 # 2 -> 10
 
-from asyncio.windows_events import NULL
-
-
 def convert(number: int, osn: int = 2, t_srt: str = '') -> str:
     '''
     Функция переводит десятичное число в систему исчесления переданой вторым параметром рекурсией

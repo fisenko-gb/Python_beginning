@@ -9,10 +9,8 @@ import f_function as f
 
 number = f.input_testing_number()
 
-if number > 0:
-    list_number = f.random_list(number * -1, number, random.randint(5, 15))
-else:
-    list_number = f.random_list(number, number * -1, random.randint(5, 15))
+list_number = f.random_list(number * -1, number, random.randint(5, 15))
+
 
 index1 = random.randint(0, len(list_number)-1)
 index2 = random.randint(0, len(list_number)-1)

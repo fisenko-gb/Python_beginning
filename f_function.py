@@ -5,7 +5,10 @@ def random_list(min: int, max: int, list_len: int) -> list:
     """
     Функция принимает на вход три параметра и возвращает список случайных числе
     """
-    return [randint(min, max) for i in range(list_len)]
+    if min <= max:
+        return [randint(min, max) for i in range(list_len)]
+    else:
+        return [randint(max, min) for i in range(list_len)]
 
 def leave_only_numbers(st: str) -> str:
     """

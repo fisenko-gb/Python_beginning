@@ -11,7 +11,6 @@ number = f.input_testing_number()
 
 list_number = f.random_list(number * -1, number, random.randint(5, 15))
 
-
 index1 = random.randint(0, len(list_number)-1)
 index2 = random.randint(0, len(list_number)-1)
 

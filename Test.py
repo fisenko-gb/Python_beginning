@@ -1,17 +1,15 @@
 
-def getNumber01():  # Первый вариант
-    while type:
-        getNumber = input('Введите число: ')                 # Ввод числа
-        try:                                    # Проверка что getTempNumber преобразуется в число без ошибки
-            getTempNumber = int(getNumber)
-        # Проверка на ошибку неверного формата (введены буквы)
-        except ValueError:
-            print('"' + getNumber + '"' + ' - не является числом')
-            continue
-        else:                                   # Если getTempNumber преобразован в число без ошибки, выход из цикла while
-            break
-    # возвращает модуль getTempNumber (для искл. отрицат. чисел)
-    return getTempNumber
+a = [0, 4, 2, 3, 1]
 
+for i in a:
+    print(i, end=', ')
 
-print(getNumber01())
+print()
+
+for i in a:
+    print(a[i-1], end='; ')
+
+print()
+
+for i in range(len(a)):
+    print(i, end='!')

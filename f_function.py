@@ -1,10 +1,14 @@
+import random
 from random import randint
 import time
 
-def random_list(min: int, max: int, list_len: int) -> list:
+def random_list(min: int, max: int, list_len: int = 0) -> list:
     """
     Функция принимает на вход три параметра и возвращает список случайных числе
     """
+    if list_len == 0:
+        list_len = random.randint(10, 50)
+
     if min <= max:
         return [randint(min, max) for i in range(list_len)]
     else:

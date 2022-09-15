@@ -89,3 +89,12 @@ def convert(number: int, osn: int = 2, t_srt: str = '') -> str:
         t_srt += convert(number // osn,
                          osn, t_srt) + str(number % osn)
     return t_srt
+
+### Работа с файлами ##################################
+
+def file_list_write(file_name:str, data_file:list, enccod:str = 'utf-8', sep:str = "\n"):
+    '''
+    Функция осуществляет запись списка в файл
+    '''
+    with open(file_name, 'w', encoding=enccod) as file:
+        print(*data_file, file=file, sep=sep)

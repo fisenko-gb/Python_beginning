@@ -2,3 +2,26 @@
 # К примеру, слово "абба" можно зашифровать "бввб" - сдвиг на 1 вправо. "вггв" - сдвиг на 2 вправо, "юяяю" - сдвиг на 2 влево.
 # Сдвиг часто называют ключом шифрования.
 # Ваша задача - написать функцию, которая записывает в файл шифрованный текст, а также функцию, которая спрашивает ключ, считывает текст и дешифровывает его.
+
+# c = (x + n)
+def encrypt_decrypt(t_string:str, t_key:int, encrypt:bool = True) -> str:
+    '''
+    Функция зашифровывает или зашивровывает принимаемый текст
+    '''
+    rezult = ''
+    for i in range(len(t_string)):
+        if encrypt:
+            rezult += chr((ord(t_string[i]) + t_key))
+        else:
+            rezult += chr((ord(t_string[i]) - t_key))
+
+    return rezult
+
+
+t = 'абба'
+sdvig = 1
+
+print(t)
+sh = encrypt_decrypt(t, sdvig)
+print(sh)
+print(encrypt_decrypt(sh, sdvig, False))

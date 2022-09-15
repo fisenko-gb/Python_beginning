@@ -6,7 +6,7 @@
 # c = (x + n)
 def encrypt_decrypt(t_string:str, t_key:int, encrypt:bool = True) -> str:
     '''
-    Функция зашифровывает или зашивровывает принимаемый текст
+    Функция зашифровывает или разшивровывает(определяется последним параметром) принимаемый текст
     '''
     rezult = ''
     for i in range(len(t_string)):

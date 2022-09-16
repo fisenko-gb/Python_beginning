@@ -92,9 +92,30 @@ def convert(number: int, osn: int = 2, t_srt: str = '') -> str:
 
 ### Работа с файлами ##################################
 
-def file_list_write(file_name:str, data_file:list, enccod:str = 'utf-8', sep:str = "\n"):
+def encrypt_decrypt(t_string: str, t_key: int, encrypt: bool = True) -> str:
     '''
-    Функция осуществляет запись списка в файл
+    Функция зашифровывает или расшивровывает(определяется последним параметром) принимаемый текст
     '''
-    with open(file_name, 'w', encoding=enccod) as file:
-        print(*data_file, file=file, sep=sep)
+    rezult = ''
+    for i in range(len(t_string)):
+        if encrypt:
+            rezult += chr((ord(t_string[i]) + t_key))
+        else:
+            rezult += chr((ord(t_string[i]) - t_key))
+
+    return rezult
+
+def read_file(file_name: str, enc: str = 'utf-8') -> list:
+    '''
+       Функция читает файл и возращает список строк переданного файла
+    '''
+    with open(file_name, 'r', encoding=enc) as file:
+        text_file = file.read().split('\n')
+    return text_file
+
+def write_list_file(t_list: list, file_name: str, enc: str = 'utf-8', sep:str = "\n"):
+    '''
+       Функция записываеи в файл данные из переданного списка
+    '''
+    with open(file_name, 'w', encoding=enc) as file:
+        print(*t_list, file=file, sep=sep)

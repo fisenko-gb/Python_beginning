@@ -1,15 +1,9 @@
+import random
 
-a = [0, 4, 2, 3, 1]
+numbers = [random.randrange(1, 100, 1) for i in range(5)]
 
-for i in a:
-    print(i, end=', ')
+chet = lambda i: not i%2
 
-print()
+f = list(filter(lambda i: False if not i%2 else True, numbers))
 
-for i in a:
-    print(a[i-1], end='; ')
 
-print()
-
-for i in range(len(a)):
-    print(i, end='!')

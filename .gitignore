@@ -160,3 +160,6 @@ cython_debug/
 #.idea/
 /Seminar04/file.txt
 *.pdf
+/venv
+/Seminar04/homework04/Text_Encrypted.txt
+/.idea/

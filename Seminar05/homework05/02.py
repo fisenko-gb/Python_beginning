@@ -14,7 +14,7 @@ def input_kol(name: str) -> int:
     x = 0
     while x < min_candy or x > max_candy:
         try:
-            x = int(input(f'{name}, Можно брать только от {min_candy} до {max_candy} конфет, сколько конфет Вы возьмете: '))
+            x = int(input(f'{name}, можно брать только от {min_candy} до {max_candy} конфет, сколько конфет Вы возьмете: '))
         except ValueError:
             x = 0
             print('Вводить можно только числа...')

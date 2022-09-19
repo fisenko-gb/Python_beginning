@@ -25,7 +25,7 @@ def messeng(name: str, t_kol: int, count_pl: int, count_can: int):
     '''
     Функция формирует строку сообщения о текущем состоянии игры
     '''
-    print(f'Игрок {name}, взял {t_kol}, теперь у него {count_pl}. Осталось на столе {count_can} конфет.')
+    print(f'Игрок {name}, взял {t_kol}, итого у него {count_pl}. На столе осталось {count_can} конфет.')
 
 print('Добро пожаловать на Игру, на столе лежит ограниченное количество конфет, кто забирает последнюю конфету, тот выигрывает! Удачи!!!')
 
@@ -52,12 +52,10 @@ while count_candy > max_candy:
         motion_human = False
         messeng(human, k, count_pl1, count_candy)
     else:
-        if count_candy > max_candy * 2:
-            k = randint(min_candy, max_candy + 1)
-        elif count_candy < max_candy * 2 and count_candy != max_candy + 1:
-            k = count_candy - max_candy - 1
+        if (count_candy > max_candy) * 2 or (count_candy == max_candy + 1):
+            k = randint(min_candy, max_candy)
         else:
-            k = max_candy - 1
+            k = count_candy - max_candy - 1
 
         count_pl2 += k
         count_candy -= k

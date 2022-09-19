@@ -14,14 +14,19 @@
 # https://dzen.ru/media/simplichka/kak-tekst-hranitsia-v-kompiutere-chast-3-62d3d91515d67a522f78e1e6?&
 
 def set_tuple(list1:list, list2:list) -> tuple:
-
+    '''
+    Функция объединяет два списка в кортеж
+    '''
     for i in range(len(list1)):
         list1[i] = list1[i].upper()
 
 
     return dict(zip(list2, list1))
 
-def filter_elements(t_tuple:tuple):
+def filter_elements(t_tuple:tuple) -> tuple:
+    '''
+    Функция осуществляет фильтрацию элементов и возвращает уже отфильтрованный кортеж
+    '''
     new_tuple = {}
     for key, value in t_tuple.items():
         t_sum_kod = 0

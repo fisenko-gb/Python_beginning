@@ -17,9 +17,9 @@ def set_tuple(list1:list, list2:list) -> tuple:
     '''
     Функция объединяет два списка в кортеж
     '''
-    for i in range(len(list1)):
-        list1[i] = list1[i].upper()
-
+    # for i in range(len(list1)):
+    #     list1[i] = list1[i].upper()
+    list1 = [char.upper() for char in list1] #Комментарий преподователя
 
     return dict(zip(list2, list1))
 

@@ -37,6 +37,15 @@ def str_to_list(t_str: str) -> list:
         temp_str = ''
     return new_list
 
+def get_prioritet(oper:str)  -> int:
+    if oper == '^':
+        return 3
+    elif oper == '*' or oper == '/':
+        return 2
+    elif oper == '+' or oper == '-':
+        return 1
+    return 0
+
 def reverse_natation(t_list: list) -> list:
     rezult = 0
     out_list = []
@@ -49,20 +58,25 @@ def reverse_natation(t_list: list) -> list:
             out_list.append('0' + element)
         elif element == ')':
             dl = len(stek) - 1
+            t_ves = get_prioritet(stek[len(stek) - 1])
             while dl > 0:
                 if stek[dl] != '(':
-                    out_list.append(stek.pop())
+                    n_prioritet = get_prioritet(stek[dl])
+                    if n_prioritet >= t_ves:
+                        out_list.append(stek.pop())
                 else:
                     stek.pop()
-                    break
+                    #break
+                    continue
                 dl -= 1
+
         else:
             stek.append(element)
     for i in stek:
         if i != '(':
             out_list.append(i)
-    #print(stek)
-    #print(out_list)
+    print(stek)
+    print(out_list)
     return out_list
 
 def calc(t_list: list, oper: str) -> float:
@@ -88,23 +102,24 @@ def calc(t_list: list, oper: str) -> float:
 def counting(t_list: list) -> float:
     rez = 0
     temp_list = []
+    calc_list = []
     temp_rez = 0
-    start = 0
-    stop = len(t_list) - 1
 
     for i, element in enumerate(t_list):
         if element.isdigit():
             temp_list.append(element)
         else:
-            temp_rez = calc(temp_list, element)
-            temp_list.clear()
-            temp_list.append(temp_rez)
 
+            calc_list.append(temp_list.pop())
+            calc_list.append(temp_list.pop())
+            temp_rez = calc(calc_list, element)
+            temp_list.append(temp_rez)
+            calc_list.clear()
 
     return temp_rez
 
 
-t_str = '(5-3)*(16-14)'
+t_str = '2*(16-14)+2'
 
 new_list = str_to_list(t_str)
 natation_list = reverse_natation(new_list)

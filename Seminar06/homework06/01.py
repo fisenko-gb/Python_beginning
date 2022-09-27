@@ -1,8 +1,11 @@
 # Определить, присутствует ли в заданном списке строк, некоторое число
 
-data = ['апап4', 'fdgg3', 'fgdf', '6', 'fg24']
+list_str = ['Ольга', 'Никита', 'Милана', 'Планета33', 'возраст']
 
-#print(''.join(list(filter(lambda char: char.isdigit(), data))))
+t_str = '33'
+find = any(str(t_str) in s for s in list_str)
 
-number = fg
-print(any(str(number) in s for s in data))
+if find:
+    print('Найдено')
+else:
+    print('Не найдено')

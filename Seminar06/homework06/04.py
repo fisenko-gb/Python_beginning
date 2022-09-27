@@ -6,9 +6,11 @@
 # список: ["123", "234", 123, "567"], ищем: "123", ответ: -1
 # список: [], ищем: "123", ответ: -1
 
-st = 'йцу1'
-n_list = ["йцу", "фыв", "ячс", "цук", "йцукен", "йцу"]
+str_find = 'qwe'
+t_list = ["qwe", "asd", "zxc", "qwe", "ertqwe"]
+
 try:
-    print(list(filter(lambda tuple: tuple[0] == st, zip(n_list, range(len(n_list)))))[1][1])
+    print(list(filter(lambda tuple: tuple[0] == str_find, zip(t_list, range(len(t_list)))))[1][1])
+
 except IndexError:
-    print(-1)
+    print('Не найдено...')

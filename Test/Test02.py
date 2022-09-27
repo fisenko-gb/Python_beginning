@@ -1,5 +1,16 @@
 import sys
 
+num1 = 10.6
+num2 = 0
+
+if num2 == 0:
+    exit()
+
+rez = num1 / num2
+print(rez)
+
+exit()
+
 def solve(vr):
     st = []
     for w in vr:

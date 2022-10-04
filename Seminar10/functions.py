@@ -5,7 +5,7 @@ from telegram.ext import (
     ConversationHandler,
 )
 # Включим ведение журнала
-import check
+#import check
 import json
 
 logging.basicConfig(

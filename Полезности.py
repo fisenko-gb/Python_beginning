@@ -111,3 +111,9 @@ reverse_x = x[::-1]
 ### Запись списка в файл ###
 with open(file_name, 'w', encoding='utf-8') as file:
     print(*data_file, file=file, sep="\n")
+
+###########################################################################################
+import logging  # Включим ведение журнала логирование
+logging.basicConfig(level=logging.INFO, filename="py_log.log", filemode="a",
+                    format="%(asctime)s %(levelname)s %(message)s", datefmt="%Y/%m/%d, %H:%M:%S", encoding='UTF-8')
+logger = logging.getLogger(__name__)

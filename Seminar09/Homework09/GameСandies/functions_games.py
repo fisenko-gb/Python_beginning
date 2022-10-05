@@ -8,6 +8,7 @@ from telegram.ext import (
 
 logging.basicConfig(level=logging.INFO, filename="py_log.log", filemode="a",
                     format="%(asctime)s %(levelname)s %(message)s", datefmt="%Y/%m/%d, %H:%M:%S", encoding='UTF-8')
+
 logger = logging.getLogger(__name__)
 
 INPUT_CANDY, MOTION_HUMAN = range(2)
@@ -21,17 +22,12 @@ bot = 'Умник'
 count_pl1 = 0
 count_pl2 = 0
 
-
 def messeng_set(name: str, t_kol: int, count_pl: int, count_can: int):
     '''
     Функция формирует строку сообщения о текущем состоянии игры
     '''
 
     return (f'Игрок {name}, взял {t_kol}, итого у него {count_pl}. На столе осталось {count_can} конфет.')
-
-
-# функция обратного вызова точки входа в разговор
-
 
 def start(update, _):
     user = update.message.from_user
@@ -65,7 +61,6 @@ def input_cout_candy(update, _):
     except:
         logging.error(f"Не удалось привести к числу {number}. Вызвано исключение.")
         update.message.reply_text('Введенные данные не корректны... ')
-
 
 def motion_human(update, _):
     global count_pl1, count_candy
@@ -111,7 +106,6 @@ def motion_human(update, _):
         update.message.reply_text('Введенные данные не корректны... ')
         logging.ERROR(f'Введены не корректные данные {number}. Вызвано исключение')
 
-
 def game(update):
     global count_pl2, count_candy
 
@@ -140,7 +134,6 @@ def reset():
     count_pl2 = 0
     logging.info('Обнуление переменных')
     logging.info('==============================================================================================')
-
 
 def cancel(update, _):
     # определяем пользователя

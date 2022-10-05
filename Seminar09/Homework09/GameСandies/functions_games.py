@@ -53,10 +53,9 @@ def input_cout_candy(update, _):
             rez = randint(0, 2)
             if rez:
                 update.message.reply_text('Сколько конфет Вы возьмете?')
-                return MOTION_HUMAN
             else:
                 game(update)
-                return MOTION_HUMAN
+            return MOTION_HUMAN
 
     except:
         update.message.reply_text('Введенные данные не корректны... ')

@@ -1,5 +1,5 @@
 import logging  # Включим ведение журнала
-from random import randint
+import json_worker
 
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove, Update
 from telegram.ext import (

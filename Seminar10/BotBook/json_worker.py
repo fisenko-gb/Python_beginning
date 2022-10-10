@@ -75,6 +75,6 @@ def test_sear(t_str: str):
 
 
 # test_read_and_write()
-test_sear('ива')
+#test_sear('ива')
 
 

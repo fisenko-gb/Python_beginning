@@ -1,4 +1,5 @@
 import json
+import csv
 from config import BASE_FILE
 
 data_from_json = []
@@ -31,6 +32,27 @@ def show_tuple_string(t_tuple):
         rez_string += '\n'
     return rez_string
 
+def delete_str_base(t_id: int):
+    global data_from_json
+    data_from_json = read_base()
+    for i, j in enumerate(data_from_json):
+        if j['id'] == t_id:
+            del data_from_json[i]
+            break
+    write_base()
+
+def update_str_base(new_str):
+    global data_from_json
+    data_from_json = read_base()
+    for i in data_from_json:
+        if i['id'] == new_str['id']:
+            i['last_name'] = new_str['last_name']
+            i['first_name'] = new_str['first_name']
+            i['patronymic'] = new_str['patronymic']
+            i['telefon'] = new_str['telefon']
+            i['comment'] = new_str['comment']
+            break
+    write_base()
 
 def search_base(str_searh: str) -> list:
     global data_from_json
@@ -57,6 +79,52 @@ def add_base(last_name: str, first_name: str, patronymic: str, telefon: str, com
         id = 1
     data_from_json.append({'id': id, 'last_name': last_name, 'first_name': first_name, 'patronymic': patronymic, 'telefon': telefon, 'comment': comment})
     write_base()
+
+def export_csv():
+
+    with open(BASE_FILE, "r", encoding="UTF-8") as my_file:    # читаем из файла
+            string_json = my_file.read()
+    t_list = json.loads(string_json)
+
+
+    with open('export.csv', mode="w", encoding='utf-8') as w_file:
+        names = ['id',
+                 'last_name',
+                 'first_name',
+                 'patronymic',
+                 'telefon',
+                 'comment']
+        file_writer = csv.DictWriter(w_file, delimiter=";",
+                                     lineterminator="\r", fieldnames=names)
+        file_writer.writerows(t_list)
+
+def import_csv(file_name: str = 'test.csv') -> list:
+    global data_from_json
+    data_from_json = read_base()
+    result = []
+    try:
+        with open(file_name, 'r', encoding='utf-8') as csv_file:
+            file_read = csv.reader(csv_file, delimiter=';')
+            count = 0
+            for row in file_read:
+                if count == 0:
+                    count += 1
+                    continue
+                else:
+                    temp_dict ={}
+                    temp_dict['id'] = int(row[0])
+                    temp_dict['surname'] = row[1]
+                    temp_dict['name'] = row[2]
+                    temp_dict['fathername'] = row[3]
+                    temp_dict['telefon'] = int(row[4])
+                    temp_dict['comment'] = row[5]
+                result.append(temp_dict)
+                count += 1
+        for i in result:
+            data_from_json.append(i)
+        write_base()
+    except:
+        return -1
 
 ##################################################################################################
 ##################################################################################################

@@ -38,9 +38,8 @@ def menu(n_menu: int):
         return markup
     elif n_menu == 3: # Поиск
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        btn1 = types.KeyboardButton("3.1 Найти")
-        btn2 = types.KeyboardButton("Назад")
-        markup.add(btn1, btn2)
+        btn1 = types.KeyboardButton("Назад")
+        markup.add(btn1)
         menu_level = 3
         return markup
     elif n_menu == 4: # Назад
@@ -49,11 +48,17 @@ def menu(n_menu: int):
         markup.add(btn1)
         menu_level = 4
         return markup
-    elif n_menu == 5: # Сохранить
+    elif n_menu == 5: # Сохранить отменить
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
         btn1 = types.KeyboardButton("Сохранить")
-        btn2 = types.KeyboardButton("Назад")
+        btn2 = types.KeyboardButton("Отменить")
         markup.add(btn1, btn2)
+        menu_level = 5
+        return markup
+    elif n_menu == 6: # Отменить
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        btn1 = types.KeyboardButton("Отменить")
+        markup.add(btn1)
         menu_level = 5
         return markup
 
@@ -73,34 +78,63 @@ def answer(call):
 # Добавление нового элемента
 def save_lastname(mesage: Message):
     global last_name
+    if mesage.text == 'Отменить':
+        func(mesage)
+        return
     last_name = mesage.text
     bot.send_message(mesage.chat.id, text="Введите имя")
     bot.register_next_step_handler(mesage, save_firstname)
 
 def save_firstname(mesage: Message):
     global first_name
+    if mesage.text == 'Отменить':
+        func(mesage)
+        return
     first_name = mesage.text
     bot.send_message(mesage.chat.id, text="Введите отчество")
     bot.register_next_step_handler(mesage, save_patronymic)
 
 def save_patronymic(mesage: Message):
     global patronymic
+    if mesage.text == 'Отменить':
+        func(mesage)
+        return
     patronymic = mesage.text
     bot.send_message(mesage.chat.id, text="Введите телефон")
     bot.register_next_step_handler(mesage, save_telefon)
 
 def save_telefon(mesage: Message):
     global telef
+    if mesage.text == 'Отменить':
+        func(mesage)
+        return
     telef = mesage.text
     bot.send_message(mesage.chat.id, text="Введите комментарий")
     bot.register_next_step_handler(mesage, save_comment)
 
 def save_comment(mesage: Message):
     global comment
+    if mesage.text == 'Отменить':
+        func(mesage)
+        return
     comment = mesage.text
     markup = menu(5)
     bot.send_message(mesage.chat.id, text="Вы закончили ввод данных, хотите их сохранить?", reply_markup=markup)
 # Конец Добавление нового элемента
+
+def find_base(mesage: Message):
+    if mesage.text == 'Назад':
+        func(mesage)
+        return
+    rez = jw.search_base(mesage.text)
+    if len(rez) > 0:
+        rez = jw.show_tuple_string(rez)
+        bot.send_message(mesage.chat.id, text=rez)#, reply_markup=markup)
+    else:
+        markup = menu(3)
+        bot.send_message(mesage.chat.id, text="Ничего не найдено, по-пробуйте еще раз", reply_markup=markup)
+        bot.register_next_step_handler(mesage, find_base)
+
 
 
 @bot.message_handler(content_types=['text'])
@@ -108,7 +142,7 @@ def func(message):
     global last_name, first_name, patronymic, telef, comment
 
     if (message.text == "1.Добавить"):
-        markup = menu(4)
+        markup = menu(6)
         bot.send_message(message.chat.id, text="Введите фамилию", reply_markup=markup)
         bot.register_next_step_handler(message, save_lastname)
     elif (message.text == '2.1 Фамилия'):
@@ -127,13 +161,14 @@ def func(message):
     elif (message.text == "2.Поиск"):
         markup = menu(3)
         bot.send_message(message.chat.id, text="Введите строку поиска", reply_markup=markup)
+        bot.register_next_step_handler(message, find_base)
 
     elif message.text == "3.Показать все":
         database = jw.read_base()
         database_srt = jw.show_tuple_string(database)
         markup = menu(4)
         bot.send_message(message.chat.id, text=database_srt, reply_markup=markup)
-    elif (message.text == "Назад"):
+    elif message.text == "Назад" or message.text == "Отменить":
         markup = menu(1)
         if menu_level == 2 or menu_level == 3:
             markup = menu(1)
